@@ -1,0 +1,8 @@
+[template]
+src = "ejabberd.yml.tmpl"
+dest = "/etc/ejabberd/ejabberd.yml"
+mode = "0644"
+keys = [
+    "/domain",
+    "/admin/username"
+]

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export TERM=xterm
+exec script -qfc "screen -S ejabberd /sbin/ejabberdctl live" /dev/null | /usr/local/bin/strip.pl

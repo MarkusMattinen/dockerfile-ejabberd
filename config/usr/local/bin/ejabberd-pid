@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true
+do
+ps axo "comm,pid" | grep "^ejabberdctl " | awk '{print $2}' > /var/run/ejabberd/ejabberd.pid
+sleep 1
+done
