@@ -31,7 +31,7 @@ RUN apt-get update \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
- && chmod 777 /var/run/screen \
+ && chmod 775 /var/run/screen \
  && mkdir -p /var/run/ejabberd \
  && chown ejabberd:ejabberd /var/run/ejabberd
 
