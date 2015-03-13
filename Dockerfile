@@ -1,5 +1,5 @@
 # ejabberd, confd and supervisord on trusty
-FROM markusma/confd:trusty
+FROM markusma/confd:0.8.0
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
 RUN addgroup ejabberd \
