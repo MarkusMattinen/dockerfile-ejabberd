@@ -59,7 +59,7 @@ loglevel: 4
 ##   - "example.org"
 ##
 hosts:
-  - "{{ .domain }}"
+  - "{{ getenv "DOMAIN" }}"
 
 ##
 ## route_subdomains: Delegate subdomains to other XMPP servers.
@@ -143,7 +143,7 @@ s2s_certfile: "/usr/local/etc/ssl/private/tls_cert_chain_and_key.pem"
 ## domain_certfile: Specify a different certificate for each served hostname.
 ##
 host_config:
-  "{{ .domain }}":
+  "{{ getenv "DOMAIN" }}":
     domain_certfile: "/usr/local/etc/ssl/private/tls_cert_chain_and_key.pem"
 
 ##
@@ -182,7 +182,7 @@ auth_method:
 auth_password_format: scram
 ##
 ## Define the FQDN if ejabberd doesn't detect it:
-fqdn: "{{ .domain }}"
+fqdn: "{{ getenv "DOMAIN" }}"
 
 ##
 ## Authentication using external script
@@ -341,7 +341,7 @@ acl:
   ##
   admin:
     user:
-      - "{{ .admin_username }}": "{{ .domain }}"
+      - "{{ getenv "ADMIN_USERNAME" }}": "{{ getenv "DOMAIN" }}"
   ##     - "ermine": "example.org"
   ##
   ## Blocked users
