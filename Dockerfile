@@ -2,7 +2,7 @@
 FROM markusma/confd:0.8.0
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
-ENV ERLANG_VERSION 18.0
+ENV ERLANG_VERSION 17.5
 ENV EJABBERD_VERSION 15.06
 
 RUN addgroup ejabberd \
