@@ -2,6 +2,9 @@
 FROM markusma/confd:0.8.0
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
+ENV ERLANG_VERSION 18.0
+ENV EJABBERD_VERSION 15.06
+
 RUN addgroup ejabberd \
  && adduser --system --ingroup ejabberd --home /opt/ejabberd --disabled-login ejabberd \
  && mkdir -p /var/run/ejabberd \
@@ -11,22 +14,22 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends build-essential m4 git libncurses5-dev libssh-dev libyaml-dev libexpat-dev screen \
  && mkdir -p /tmp/erlang \
  && cd /tmp/erlang \
- && curl -sSL http://erlang.org/download/otp_src_R16B03-1.tar.gz > otp_src_R16B03-1.tar.gz \
- && tar xf otp_src_R16B03-1.tar.gz \
- && cd otp_src_R16B03-1 \
+ && curl -sSL http://erlang.org/download/otp_src_$ERLANG_VERSION.tar.gz > otp_src_$ERLANG_VERSION.tar.gz \
+ && tar xf otp_src_$ERLANG_VERSION.tar.gz \
+ && cd otp_src_$ERLANG_VERSION \
  && ./configure \
  && make -j4 \
  && make install \
  && mkdir -p /tmp/ejabberd \
  && cd /tmp/ejabberd \
- && curl -sSL "http://www.process-one.net/downloads/downloads-action.php?file=/ejabberd/13.12/ejabberd-13.12.tgz" > ejabberd-13.12.tgz \
- && tar xf ejabberd-13.12.tgz \
- && cd ejabberd-13.12 \
+ && curl -sSL "http://www.process-one.net/downloads/downloads-action.php?file=/ejabberd/$EJABBERD_VERSION/ejabberd-$EJABBERD_VERSION.tgz" > ejabberd-$EJABBERD_VERSION.tgz \
+ && tar xf ejabberd-$EJABBERD_VERSION.tgz \
+ && cd ejabberd-$EJABBERD_VERSION \
  && ./configure --enable-user=ejabberd \
  && make -j4 \
  && make install \
  && cd / \
- && rm -rf /tmp/erlang /tmp/ejabberd \
+ && rm -rf /tmp/otp_src_$ERLANG_VERSION /tmp/ejabberd \
  && apt-get purge -y build-essential m4 git \
  && apt-get autoremove -y \
  && apt-get clean \
