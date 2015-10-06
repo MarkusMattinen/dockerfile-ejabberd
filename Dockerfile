@@ -1,9 +1,9 @@
 # ejabberd, confd and supervisord on trusty
-FROM markusma/confd:0.8.0
-MAINTAINER Markus Mattinen <docker@gamma.fi>
+FROM markusma/confd:0.10
+MAINTAINER Markus Mattinen <markus@gamma.fi>
 
-ENV ERLANG_VERSION 17.5
-ENV EJABBERD_VERSION 15.06
+ENV ERLANG_VERSION 18.1
+ENV EJABBERD_VERSION 15.09
 
 RUN addgroup ejabberd \
  && adduser --system --ingroup ejabberd --home /opt/ejabberd --disabled-login ejabberd \
